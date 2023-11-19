@@ -24,8 +24,8 @@ export default function MapaGeneral() {
           view = new MapView({
             container: "mapDiv",
             map: webmap,
-            zoom: 6,
-            center: [-67.2973, 4.8709],
+            zoom: 5,
+            center: [-67.2973, 4.5709],
             constraints: {
               rotationEnabled: false, // Impedir la rotación del mapa
               minZoom: 5, // Nivel de zoom mínimo
@@ -69,6 +69,7 @@ export default function MapaGeneral() {
             const homeButton = new Home({
               view: view,
             });
+
             view.ui.add(homeButton, "top-left");
 
             viewRef.current = view;
