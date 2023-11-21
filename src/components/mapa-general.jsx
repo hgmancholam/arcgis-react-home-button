@@ -18,6 +18,7 @@ export default function MapaGeneral() {
           "esri/widgets/Home",
           "esri/widgets/Legend",
           "esri/widgets/ScaleBar",
+          "esri/widgets/Compass",
           "esri/widgets/Slider",
           "esri/widgets/Search",
           "esri/widgets/Locate",
@@ -33,6 +34,7 @@ export default function MapaGeneral() {
             Home,
             Legend,
             ScaleBar,
+            Compass,
             Slider,
             Search,
             Locate,
@@ -50,8 +52,8 @@ export default function MapaGeneral() {
               center: [-67.2973, 4.5709],
               constraints: {
                 rotationEnabled: false, // Impedir la rotación del mapa
-                minZoom: 5, // Nivel de zoom mínimo
-                maxZoom: 5, // Nivel de zoom máximo
+                minZoom: 1, // Nivel de zoom mínimo
+                maxZoom: 10, // Nivel de zoom máximo
                 snapToZoom: false, // Deshabilitar la rotación
                 minPitch: 0,
                 maxPitch: 60,
@@ -90,30 +92,26 @@ export default function MapaGeneral() {
             webmap.load().then(() => {
               const homeButton = new Home({ view: view });
               const legend = new Legend({ view: view });
-              const scale = new ScaleBar({
-                view: view,
-              });
+              const scale = new ScaleBar({ view: view });
+              const compass = new Compass({ view: view });
+              const search = new Search({ view: view });
+              const locate = new Locate({ view: view });
 
               const slider = new Slider({
-                // container: "sliderdiv",
                 view: view,
                 min: 0,
                 max: 100,
-                values: [50],
-              });
-              const search = new Search({
-                view: view,
+                values: [10],
               });
 
-              const locate = new Locate({
-                view: view,
-              });
               view.ui.add(homeButton, "top-left");
               view.ui.add(legend, "bottom-left");
               view.ui.add(scale, "bottom-left");
-              view.ui.add(slider, "bottom-left");
+              view.ui.add(compass, "top-left");
               view.ui.add(search, "top-left");
               view.ui.add(locate, "top-left");
+              view.ui.add(slider, "bottom-left");
+
               viewRef.current = view;
             });
           }
